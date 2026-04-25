@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JersonTIC – Catálogo de Laptops</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul:       #0a1628;
+  --azul-medio: #0d2040;
+  --cyan:       #00c8f0;
+  --cyan2:      #0098d4;
+  --naranja:    #ff6a00;
+  --blanco:     #e8f4ff;
+  --gris:       #7a99bb;
+  --card-bg:    #0d2040;
+  --card-border:#1a3560;
+  --success:    #25d366;
+  --danger:     #e53535;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--azul);color:var(--blanco);font-family:'Exo 2',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,240,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+/* ── HEADER ── */
+header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradient(180deg,#050e1f,rgba(5,14,31,.95));border-bottom:1px solid var(--card-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.logo-area{display:flex;align-items:center;gap:.9rem;}
+.logo-icon{width:48px;height:48px;}
+.brand-name{font-family:'Orbitron',sans-serif;font-size:1.7rem;font-weight:900;letter-spacing:1px;}
+.brand-name span{color:var(--cyan);}
+.brand-tagline{font-size:.7rem;color:var(--gris);letter-spacing:2px;text-transform:uppercase;}
+.header-btns{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;}
+.btn-wsp{display:flex;align-items:center;gap:.4rem;background:var(--success);color:#fff;font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border:none;border-radius:50px;padding:.55rem 1.2rem;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-wsp:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.4);}
+.btn-admin-toggle{display:flex;align-items:center;gap:.4rem;background:rgba(255,106,0,.15);color:var(--naranja);border:1px solid var(--naranja);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border-radius:50px;padding:.55rem 1.2rem;cursor:pointer;transition:all .2s;}
+.btn-admin-toggle:hover{background:var(--naranja);color:#fff;}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:5;text-align:center;padding:3.5rem 2rem 2.5rem;}
+.hero-badge{display:inline-block;background:rgba(0,200,240,.12);border:1px solid var(--cyan);color:var(--cyan);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:50px;margin-bottom:1.2rem;}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4.5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:.8rem;}
+.hero h1 .ac{color:var(--cyan);} .hero h1 .ao{color:var(--naranja);}
+.hero p{color:var(--gris);font-size:1rem;max-width:480px;margin:0 auto 2rem;line-height:1.7;}
+.stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:700;color:var(--cyan);}
+.stat-label{font-size:.7rem;color:var(--gris);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ── FILTROS ── */
+.filters{position:relative;z-index:5;display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:0 2rem 2rem;}
+.filter-btn{font-family:'Exo 2',sans-serif;font-weight:600;font-size:.82rem;padding:.5rem 1.3rem;border-radius:50px;border:1px solid var(--card-border);background:var(--card-bg);color:var(--gris);cursor:pointer;transition:all .2s;}
+.filter-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+.filter-btn.active{background:var(--cyan);color:var(--azul);border-color:var(--cyan);font-weight:700;}
+
+/* ── GRID ── */
+.catalog{position:relative;z-index:5;display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.4rem;padding:0 2rem 4rem;max-width:1300px;margin:0 auto;}
+
+/* ── CARD ── */
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s;display:flex;flex-direction:column;}
+.card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 14px 36px rgba(0,200,240,.14);}
+.card-img{background:linear-gradient(135deg,#071428,#0a1e3a);padding:1.8rem;display:flex;align-items:center;justify-content:center;min-height:170px;position:relative;}
+.card-img img{max-width:190px;max-height:120px;object-fit:contain;filter:drop-shadow(0 6px 20px rgba(0,200,240,.3));}
+.card-img-placeholder{width:180px;height:110px;background:linear-gradient(135deg,#0d2040,#1a3560);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+.badge-cat{position:absolute;top:10px;left:10px;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.28rem .7rem;border-radius:50px;}
+.badge-gaming{background:rgba(255,106,0,.2);color:var(--naranja);border:1px solid var(--naranja);}
+.badge-trabajo{background:rgba(0,200,240,.15);color:var(--cyan);border:1px solid var(--cyan2);}
+.badge-estudio{background:rgba(109,220,122,.15);color:#6ddc7a;border:1px solid #3a8c42;}
+.badge-nuevo{position:absolute;top:10px;right:10px;background:var(--naranja);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.22rem .65rem;border-radius:50px;}
+.card-body{padding:1.1rem;flex:1;display:flex;flex-direction:column;}
+.card-brand{font-size:.68rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:.3rem;}
+.card-title{font-size:.95rem;font-weight:700;color:var(--blanco);margin-bottom:.9rem;line-height:1.4;}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-bottom:1.1rem;}
+.spec-item{background:rgba(0,200,240,.06);border:1px solid rgba(0,200,240,.12);border-radius:7px;padding:.4rem .55rem;}
+.spec-key{font-size:.58rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;display:block;}
+.spec-val{font-size:.78rem;font-weight:700;color:var(--blanco);display:block;margin-top:1px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.9rem;border-top:1px solid var(--card-border);}
+.price-label{font-size:.62rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;}
+.price-amount{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--naranja);}
+.btn-consultar{background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.78rem;border:none;border-radius:50px;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.35rem;}
+.btn-consultar:hover{transform:scale(1.05);box-shadow:0 4px 18px rgba(0,200,240,.4);}
+
+/* ── ADMIN OVERLAY ── */
+#admin-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,14,31,.97);overflow-y:auto;padding:2rem;}
+#admin-overlay.visible{display:block;}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;}
+.admin-title{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:900;color:var(--cyan);}
+.admin-title span{color:var(--naranja);}
+.btn-close-admin{background:rgba(229,53,53,.15);color:var(--danger);border:1px solid var(--danger);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.85rem;border-radius:50px;padding:.55rem 1.3rem;cursor:pointer;transition:all .2s;}
+.btn-close-admin:hover{background:var(--danger);color:#fff;}
+
+/* LOGIN */
+#login-box{max-width:380px;margin:6rem auto 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2.5rem;text-align:center;}
+#login-box h2{font-family:'Orbitron',sans-serif;color:var(--cyan);font-size:1.1rem;margin-bottom:.5rem;}
+#login-box p{color:var(--gris);font-size:.85rem;margin-bottom:1.5rem;}
+#login-box input{width:100%;background:rgba(0,200,240,.07);border:1px solid var(--card-border);border-radius:10px;padding:.8rem 1rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.95rem;outline:none;transition:border .2s;margin-bottom:1rem;}
+#login-box input:focus{border-color:var(--cyan);}
+#login-box button{width:100%;background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;border:none;border-radius:50px;padding:.75rem;cursor:pointer;transition:transform .2s;}
+#login-box button:hover{transform:scale(1.03);}
+.login-err{color:#ff6060;font-size:.8rem;margin-top:.5rem;display:none;}
+
+/* ADMIN PANEL */
+#admin-panel{display:none;max-width:1100px;margin:0 auto;}
+.admin-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:1.5rem;align-items:start;}
+@media(max-width:760px){.admin-grid{grid-template-columns:1fr;}}
+
+/* FORM */
+.admin-form-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;}
+.admin-form-card h3{font-family:'Orbitron',sans-serif;font-size:.95rem;color:var(--cyan);margin-bottom:1.2rem;letter-spacing:1px;}
+.form-group{margin-bottom:.85rem;}
+.form-group label{display:block;font-size:.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:.35rem;font-weight:600;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(0,200,240,.06);border:1px solid var(--card-border);border-radius:10px;padding:.65rem .9rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;outline:none;transition:border .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);}
+.form-group select option{background:#0d2040;}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.img-preview-area{border:2px dashed var(--card-border);border-radius:10px;min-height:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border .2s;overflow:hidden;position:relative;}
+.img-preview-area:hover{border-color:var(--cyan);}
+.img-preview-area img{max-width:100%;max-height:130px;object-fit:contain;}
+.img-preview-area .img-hint{color:var(--gris);font-size:.8rem;text-align:center;padding:1rem;}
+#file-input{display:none;}
+.btn-guardar{width:100%;background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.9rem;border:none;border-radius:50px;padding:.75rem;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:.5rem;}
+.btn-guardar:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,200,240,.4);}
+.btn-cancelar{width:100%;background:transparent;color:var(--gris);font-family:'Exo 2',sans-serif;font-weight:600;font-size:.85rem;border:1px solid var(--card-border);border-radius:50px;padding:.65rem;cursor:pointer;margin-top:.5rem;transition:all .2s;}
+.btn-cancelar:hover{border-color:var(--danger);color:var(--danger);}
+
+/* LISTA ADMIN */
+.admin-list-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;}
+.admin-list-card h3{font-family:'Orbitron',sans-serif;font-size:.95rem;color:var(--naranja);margin-bottom:1.2rem;letter-spacing:1px;display:flex;align-items:center;justify-content:space-between;}
+.count-badge{background:rgba(255,106,0,.2);color:var(--naranja);border:1px solid var(--naranja);font-size:.7rem;padding:.2rem .65rem;border-radius:50px;}
+.admin-item{display:flex;align-items:center;gap:.9rem;padding:.8rem;border-radius:10px;border:1px solid var(--card-border);margin-bottom:.6rem;transition:border .2s;}
+.admin-item:hover{border-color:var(--cyan);}
+.admin-item-img{width:56px;height:40px;background:rgba(0,200,240,.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;overflow:hidden;flex-shrink:0;}
+.admin-item-img img{width:100%;height:100%;object-fit:contain;}
+.admin-item-info{flex:1;min-width:0;}
+.admin-item-name{font-size:.85rem;font-weight:700;color:var(--blanco);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.admin-item-meta{font-size:.72rem;color:var(--gris);margin-top:2px;}
+.admin-item-price{font-family:'Orbitron',sans-serif;font-size:.85rem;color:var(--naranja);font-weight:700;flex-shrink:0;}
+.admin-item-actions{display:flex;gap:.4rem;flex-shrink:0;}
+.btn-edit{background:rgba(0,200,240,.12);color:var(--cyan);border:1px solid var(--cyan2);font-size:.72rem;font-weight:700;border-radius:50px;padding:.3rem .75rem;cursor:pointer;font-family:'Exo 2',sans-serif;transition:all .2s;}
+.btn-edit:hover{background:var(--cyan);color:var(--azul);}
+.btn-del{background:rgba(229,53,53,.12);color:var(--danger);border:1px solid var(--danger);font-size:.72rem;font-weight:700;border-radius:50px;padding:.3rem .75rem;cursor:pointer;font-family:'Exo 2',sans-serif;transition:all .2s;}
+.btn-del:hover{background:var(--danger);color:#fff;}
+.empty-state{text-align:center;padding:2rem;color:var(--gris);font-size:.85rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1a3560;border:1px solid var(--cyan);color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 1.5rem;border-radius:50px;z-index:9999;transition:transform .3s;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* FLOTANTE WSP */
+.wsp-float{position:fixed;bottom:2rem;right:2rem;z-index:500;background:var(--success);color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.5);transition:transform .2s;}
+.wsp-float:hover{transform:scale(1.1);}
+
+/* FOOTER */
+footer{position:relative;z-index:5;text-align:center;padding:1.8rem;border-top:1px solid var(--card-border);color:var(--gris);font-size:.78rem;}
+footer span{color:var(--cyan);font-weight:600;}
+.card.hidden{display:none;}
+@media(max-width:600px){header{flex-direction:column;text-align:center;}.catalog{grid-template-columns:1fr;padding:0 1rem 3rem;}.form-grid-2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="logo-area">
+    <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="26,2 50,15 50,37 26,50 2,37 2,15" fill="#0d2040" stroke="#00c8f0" stroke-width="1.5"/>
+      <circle cx="26" cy="26" r="10" fill="none" stroke="#00c8f0" stroke-width="1"/>
+      <path d="M20 26 Q26 18 32 26 Q26 34 20 26Z" fill="#ff6a00" opacity="0.9"/>
+      <circle cx="26" cy="26" r="3" fill="#00c8f0"/>
+    </svg>
+    <div>
+      <div class="brand-name">Jerson<span>TIC</span></div>
+      <div class="brand-tagline">Tecnología para todos</div>
+    </div>
+  </div>
+  <div class="header-btns">
+    <a class="btn-wsp" id="btn-wsp-header" href="#" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.856L.06 23.94l6.27-1.646A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.378l-.36-.214-3.724.977.995-3.632-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      WhatsApp
+    </a>
+    <button class="btn-admin-toggle" onclick="abrirAdmin()">⚙ Panel Admin</button>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-badge">✦ Catálogo Oficial 2026 ✦</div>
+  <h1>Tu próxima <span class="ac">laptop</span><br>está <span class="ao">aquí</span></h1>
+  <p>Gaming, trabajo y estudio. Asesoría personalizada, envíos a todo el Perú.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Modelos</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Garantía</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Respuesta</div></div>
+  </div>
+</section>
+
+<!-- ══ FILTROS ══ -->
+<div class="filters">
+  <button class="filter-btn active" onclick="filtrar('todos',this)">Todas</button>
+  <button class="filter-btn" onclick="filtrar('gaming',this)">🎮 Gaming</button>
+  <button class="filter-btn" onclick="filtrar('trabajo',this)">💼 Trabajo</button>
+  <button class="filter-btn" onclick="filtrar('estudio',this)">📚 Estudio</button>
+</div>
+
+<!-- ══ CATÁLOGO ══ -->
+<div class="catalog" id="catalogo"></div>
+
+<!-- ══ FOOTER ══ -->
+<footer>© 2026 <span>JersonTIC</span> · Tecnología para todos · Lima, Perú</footer>
+
+<!-- ══ WSP FLOTANTE ══ -->
+<a class="wsp-float" id="wsp-float" href="#" target="_blank" title="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.856L.06 23.94l6.27-1.646A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.378l-.36-.214-3.724.977.995-3.632-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════
+     PANEL DE ADMINISTRACIÓN
+══════════════════════════════════════ -->
+<div id="admin-overlay">
+
+  <!-- LOGIN -->
+  <div id="login-box">
+    <svg width="48" height="48" viewBox="0 0 52 52" fill="none" style="margin-bottom:.8rem"><polygon points="26,2 50,15 50,37 26,50 2,37 2,15" fill="#0d2040" stroke="#00c8f0" stroke-width="1.5"/><circle cx="26" cy="26" r="10" fill="none" stroke="#00c8f0" stroke-width="1"/><path d="M20 26 Q26 18 32 26 Q26 34 20 26Z" fill="#ff6a00" opacity="0.9"/><circle cx="26" cy="26" r="3" fill="#00c8f0"/></svg>
+    <h2>Panel Administrador</h2>
+    <p>Ingresa la contraseña para continuar</p>
+    <input type="password" id="pwd-input" placeholder="Contraseña..." onkeydown="if(event.key==='Enter')verificarPwd()">
+    <button onclick="verificarPwd()">Ingresar →</button>
+    <div class="login-err" id="login-err">Contraseña incorrecta</div>
+    <p style="margin-top:1rem;font-size:.72rem;color:#4a6080;">Contraseña por defecto: <strong style="color:var(--cyan)">jersontic2025</strong></p>
+    <button onclick="cerrarAdmin()" style="background:transparent;color:var(--gris);border:none;cursor:pointer;font-size:.8rem;margin-top:.8rem;font-family:'Exo 2',sans-serif;">✕ Cancelar</button>
+  </div>
+
+  <!-- PANEL -->
+  <div id="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">Panel <span>Admin</span> — JersonTIC</div>
+      <button class="btn-close-admin" onclick="cerrarAdmin()">✕ Cerrar panel</button>
+    </div>
+
+    <!-- CONFIGURACIÓN RÁPIDA -->
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
+      <h3 style="font-family:'Orbitron',sans-serif;font-size:.88rem;color:var(--gris);margin-bottom:.9rem;letter-spacing:1px;">⚙ CONFIGURACIÓN GENERAL</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;align-items:end;">
+        <div class="form-group" style="margin:0">
+          <label>Tu número de WhatsApp</label>
+          <input type="text" id="cfg-wsp" placeholder="Ej: 51987654321">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Contraseña del panel</label>
+          <input type="password" id="cfg-pwd" placeholder="Nueva contraseña">
+        </div>
+      </div>
+      <button onclick="guardarConfig()" style="margin-top:.9rem;background:linear-gradient(135deg,#0098d4,#00c8f0);color:#0a1628;font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border:none;border-radius:50px;padding:.55rem 1.4rem;cursor:pointer;transition:transform .2s;">💾 Guardar configuración</button>
+    </div>
+
+    <div class="admin-grid">
+      <!-- FORMULARIO -->
+      <div class="admin-form-card">
+        <h3 id="form-title">➕ AGREGAR LAPTOP</h3>
+        <input type="hidden" id="edit-id">
+
+        <div class="form-group">
+          <label>Marca</label>
+          <input type="text" id="f-brand" placeholder="Ej: ASUS, HP, Lenovo...">
+        </div>
+        <div class="form-group">
+          <label>Nombre del modelo</label>
+          <input type="text" id="f-name" placeholder="Ej: ASUS ROG Strix G15 Gaming">
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Categoría</label>
+            <select id="f-cat">
+              <option value="gaming">🎮 Gaming</option>
+              <option value="trabajo">💼 Trabajo</option>
+              <option value="estudio">📚 Estudio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Precio (S/)</label>
+            <input type="number" id="f-price" placeholder="Ej: 2499">
+          </div>
+        </div>
+
+        <div style="font-size:.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:.5rem;">Especificaciones técnicas</div>
+        <div class="form-grid-2">
+          <div class="form-group"><label>Procesador</label><input type="text" id="f-s1" placeholder="Intel i7-13th Gen"></div>
+          <div class="form-group"><label>RAM</label><input type="text" id="f-s2" placeholder="16 GB DDR4"></div>
+          <div class="form-group"><label>Tarjeta gráfica</label><input type="text" id="f-s3" placeholder="RTX 4060 8GB"></div>
+          <div class="form-group"><label>Almacenamiento</label><input type="text" id="f-s4" placeholder="512 GB NVMe SSD"></div>
+          <div class="form-group"><label>Pantalla</label><input type="text" id="f-s5" placeholder='15.6" FHD 144Hz'></div>
+          <div class="form-group"><label>Dato extra</label><input type="text" id="f-s6" placeholder="Windows 11, Batería 8h..."></div>
+        </div>
+
+        <div class="form-group">
+          <label>Foto de la laptop</label>
+          <div class="img-preview-area" onclick="document.getElementById('file-input').click()" id="img-preview-area">
+            <div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>
+          </div>
+          <input type="file" id="file-input" accept="image/*" onchange="cargarImagen(this)">
+        </div>
+        <input type="hidden" id="f-img">
+
+        <div class="form-group">
+          <label>¿Marcar como NUEVO?</label>
+          <select id="f-nuevo">
+            <option value="no">No</option>
+            <option value="si">Sí — mostrar badge NUEVO</option>
+          </select>
+        </div>
+
+        <button class="btn-guardar" onclick="guardarLaptop()">💾 Guardar laptop</button>
+        <button class="btn-cancelar" id="btn-cancelar" onclick="resetForm()" style="display:none;">✕ Cancelar edición</button>
+      </div>
+
+      <!-- LISTA -->
+      <div class="admin-list-card">
+        <h3>📋 LAPTOPS <span class="count-badge" id="list-count">0</span></h3>
+        <div id="admin-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+//  DATOS Y CONFIGURACIÓN
+// ══════════════════════════════════════
+const DEFAULT_WSP = '51999999999';
+const DEFAULT_PWD = 'jersontic2025';
+
+const LAPTOPS_DEFAULT = [
+  {id:1,brand:'ASUS ROG',name:'ASUS ROG Strix G15 – RTX 4060 Gaming Beast',cat:'gaming',price:3499,nuevo:'si',img:'',s1:'Ryzen 9 7945HX',s2:'16 GB DDR5',s3:'RTX 4060 8GB',s4:'512 GB NVMe',s5:'15.6" 144Hz FHD',s6:'Windows 11'},
+  {id:2,brand:'LENOVO',name:'Lenovo ThinkPad E16 – Productividad Profesional',cat:'trabajo',price:2299,nuevo:'no',img:'',s1:'Intel i7-13th Gen',s2:'16 GB DDR4',s3:'Intel Iris Xe',s4:'512 GB SSD',s5:'16" IPS FHD',s6:'~10 horas batería'},
+  {id:3,brand:'HP',name:'HP 250 G9 – Ideal para Universitarios',cat:'estudio',price:1399,nuevo:'no',img:'',s1:'Intel i5-12th Gen',s2:'8 GB DDR4',s3:'Intel UHD',s4:'256 GB SSD',s5:'15.6" FHD',s6:'1.74 kg'},
+  {id:4,brand:'MSI',name:'MSI Thin 15 – Gaming Ligero y Potente',cat:'gaming',price:2799,nuevo:'no',img:'',s1:'Intel i7-12650H',s2:'16 GB DDR4',s3:'RTX 4050 6GB',s4:'512 GB NVMe',s5:'15.6" 144Hz',s6:'1.86 kg'},
+  {id:5,brand:'DELL',name:'Dell Latitude 5540 – Empresarial Premium',cat:'trabajo',price:2599,nuevo:'si',img:'',s1:'Intel i7-1365U',s2:'16 GB DDR4',s3:'Intel Iris Xe',s4:'512 GB SSD',s5:'15.6" FHD IPS',s6:'TPM + Huella'},
+  {id:6,brand:'ACER',name:'Acer Aspire 3 – Rendimiento al Mejor Precio',cat:'estudio',price:1199,nuevo:'no',img:'',s1:'AMD Ryzen 5 7520U',s2:'8 GB DDR5',s3:'AMD Radeon 610M',s4:'512 GB SSD',s5:'15.6" FHD',s6:'Mejor precio'},
+];
+
+function getLaptops(){
+  const d = localStorage.getItem('jt_laptops');
+  return d ? JSON.parse(d) : LAPTOPS_DEFAULT;
+}
+function saveLaptops(arr){ localStorage.setItem('jt_laptops', JSON.stringify(arr)); }
+function getCfg(){
+  const d = localStorage.getItem('jt_cfg');
+  return d ? JSON.parse(d) : {wsp: DEFAULT_WSP, pwd: DEFAULT_PWD};
+}
+function saveCfg(c){ localStorage.setItem('jt_cfg', JSON.stringify(c)); }
+
+// ══════════════════════════════════════
+//  CATÁLOGO PÚBLICO
+// ══════════════════════════════════════
+let filtroActivo = 'todos';
+
+function renderCatalogo(){
+  const laptops = getLaptops();
+  const cfg = getCfg();
+  const wsp = cfg.wsp || DEFAULT_WSP;
+  const el = document.getElementById('catalogo');
+  document.getElementById('stat-total').textContent = laptops.length;
+  const wspLink = n => `https://wa.me/${wsp}?text=Hola%2C%20me%20interesa%20la%20${encodeURIComponent(n)}`;
+
+  if(!laptops.length){
+    el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--gris);">📭 No hay laptops en el catálogo.<br>Agrega desde el panel admin.</div>';
+    return;
+  }
+
+  el.innerHTML = laptops.map(l => {
+    const hidden = filtroActivo !== 'todos' && l.cat !== filtroActivo ? ' hidden' : '';
+    const imgHtml = l.img
+      ? `<img src="${l.img}" alt="${l.name}">`
+      : `<div class="card-img-placeholder">💻</div>`;
+    const badgeClass = l.cat === 'gaming' ? 'badge-gaming' : l.cat === 'trabajo' ? 'badge-trabajo' : 'badge-estudio';
+    const badgeLabel = l.cat === 'gaming' ? 'Gaming' : l.cat === 'trabajo' ? 'Trabajo' : 'Estudio';
+    const nuevoBadge = l.nuevo === 'si' ? '<span class="badge-nuevo">NUEVO</span>' : '';
+    return `
+    <div class="card${hidden}" data-cat="${l.cat}">
+      <div class="card-img">
+        <span class="badge-cat ${badgeClass}">${badgeLabel}</span>
+        ${nuevoBadge}
+        ${imgHtml}
+      </div>
+      <div class="card-body">
+        <div class="card-brand">${l.brand}</div>
+        <div class="card-title">${l.name}</div>
+        <div class="specs">
+          ${l.s1 ? `<div class="spec-item"><span class="spec-key">Procesador</span><span class="spec-val">${l.s1}</span></div>` : ''}
+          ${l.s2 ? `<div class="spec-item"><span class="spec-key">RAM</span><span class="spec-val">${l.s2}</span></div>` : ''}
+          ${l.s3 ? `<div class="spec-item"><span class="spec-key">GPU</span><span class="spec-val">${l.s3}</span></div>` : ''}
+          ${l.s4 ? `<div class="spec-item"><span class="spec-key">Almacenamiento</span><span class="spec-val">${l.s4}</span></div>` : ''}
+          ${l.s5 ? `<div class="spec-item"><span class="spec-key">Pantalla</span><span class="spec-val">${l.s5}</span></div>` : ''}
+          ${l.s6 ? `<div class="spec-item"><span class="spec-key">Extra</span><span class="spec-val">${l.s6}</span></div>` : ''}
+        </div>
+        <div class="card-footer">
+          <div class="price">
+            <span class="price-label">Precio</span>
+            <span class="price-amount">S/ ${Number(l.price).toLocaleString()}</span>
+          </div>
+          <a class="btn-consultar" href="${wspLink(l.name)}" target="_blank">Consultar →</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  actualizarWspLinks();
+}
+
+function filtrar(cat, btn){
+  filtroActivo = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#catalogo .card').forEach(c => {
+    c.classList.toggle('hidden', cat !== 'todos' && c.dataset.cat !== cat);
+  });
+}
+
+function actualizarWspLinks(){
+  const cfg = getCfg();
+  const wsp = cfg.wsp || DEFAULT_WSP;
+  const msg = encodeURIComponent('Hola, vi el catálogo y quiero más info');
+  const url = `https://wa.me/${wsp}?text=${msg}`;
+  document.getElementById('wsp-float').href = url;
+  document.getElementById('btn-wsp-header').href = url;
+}
+
+// ══════════════════════════════════════
+//  ADMIN – LOGIN
+// ══════════════════════════════════════
+function abrirAdmin(){
+  document.getElementById('admin-overlay').classList.add('visible');
+  document.getElementById('login-box').style.display = 'block';
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  setTimeout(()=>document.getElementById('pwd-input').focus(), 100);
+}
+
+function verificarPwd(){
+  const cfg = getCfg();
+  const pwd = cfg.pwd || DEFAULT_PWD;
+  if(document.getElementById('pwd-input').value === pwd){
+    document.getElementById('login-box').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    cargarConfigForm();
+    renderAdminList();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+
+function cerrarAdmin(){
+  document.getElementById('admin-overlay').classList.remove('visible');
+  resetForm();
+}
+
+// ══════════════════════════════════════
+//  ADMIN – CONFIGURACIÓN
+// ══════════════════════════════════════
+function cargarConfigForm(){
+  const cfg = getCfg();
+  document.getElementById('cfg-wsp').value = cfg.wsp || '';
+  document.getElementById('cfg-pwd').value = cfg.pwd || '';
+}
+
+function guardarConfig(){
+  const wsp = document.getElementById('cfg-wsp').value.trim();
+  const pwd = document.getElementById('cfg-pwd').value.trim();
+  saveCfg({wsp: wsp || DEFAULT_WSP, pwd: pwd || DEFAULT_PWD});
+  actualizarWspLinks();
+  renderCatalogo();
+  showToast('✅ Número de WhatsApp guardado');
+}
+
+// ══════════════════════════════════════
+//  ADMIN – LISTA
+// ══════════════════════════════════════
+function renderAdminList(){
+  const laptops = getLaptops();
+  const el = document.getElementById('admin-list');
+  document.getElementById('list-count').textContent = laptops.length;
+  if(!laptops.length){
+    el.innerHTML = '<div class="empty-state">Aún no hay laptops. ¡Agrega la primera!</div>';
+    return;
+  }
+  el.innerHTML = laptops.map(l => `
+    <div class="admin-item">
+      <div class="admin-item-img">
+        ${l.img ? `<img src="${l.img}" alt="${l.name}">` : '💻'}
+      </div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">${l.name}</div>
+        <div class="admin-item-meta">${l.brand} · ${l.cat}</div>
+      </div>
+      <div class="admin-item-price">S/ ${Number(l.price).toLocaleString()}</div>
+      <div class="admin-item-actions">
+        <button class="btn-edit" onclick="editarLaptop(${l.id})">✏ Editar</button>
+        <button class="btn-del" onclick="eliminarLaptop(${l.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════
+//  ADMIN – CRUD
+// ══════════════════════════════════════
+function guardarLaptop(){
+  const name  = document.getElementById('f-name').value.trim();
+  const brand = document.getElementById('f-brand').value.trim();
+  const price = document.getElementById('f-price').value.trim();
+  if(!name || !brand || !price){ showToast('⚠ Completa nombre, marca y precio'); return; }
+
+  const laptops = getLaptops();
+  const editId  = document.getElementById('edit-id').value;
+
+  const laptop = {
+    id:    editId ? Number(editId) : Date.now(),
+    brand, name,
+    cat:   document.getElementById('f-cat').value,
+    price: Number(price),
+    nuevo: document.getElementById('f-nuevo').value,
+    img:   document.getElementById('f-img').value,
+    s1: document.getElementById('f-s1').value.trim(),
+    s2: document.getElementById('f-s2').value.trim(),
+    s3: document.getElementById('f-s3').value.trim(),
+    s4: document.getElementById('f-s4').value.trim(),
+    s5: document.getElementById('f-s5').value.trim(),
+    s6: document.getElementById('f-s6').value.trim(),
+  };
+
+  if(editId){
+    const idx = laptops.findIndex(l => l.id === Number(editId));
+    if(idx > -1) laptops[idx] = laptop;
+    showToast('✅ Laptop actualizada');
+  } else {
+    laptops.push(laptop);
+    showToast('✅ Laptop agregada al catálogo');
+  }
+
+  saveLaptops(laptops);
+  renderAdminList();
+  renderCatalogo();
+  resetForm();
+}
+
+function editarLaptop(id){
+  const l = getLaptops().find(x => x.id === id);
+  if(!l) return;
+  document.getElementById('edit-id').value  = l.id;
+  document.getElementById('f-brand').value  = l.brand;
+  document.getElementById('f-name').value   = l.name;
+  document.getElementById('f-cat').value    = l.cat;
+  document.getElementById('f-price').value  = l.price;
+  document.getElementById('f-nuevo').value  = l.nuevo;
+  document.getElementById('f-s1').value     = l.s1||'';
+  document.getElementById('f-s2').value     = l.s2||'';
+  document.getElementById('f-s3').value     = l.s3||'';
+  document.getElementById('f-s4').value     = l.s4||'';
+  document.getElementById('f-s5').value     = l.s5||'';
+  document.getElementById('f-s6').value     = l.s6||'';
+  document.getElementById('f-img').value    = l.img||'';
+  const pa = document.getElementById('img-preview-area');
+  pa.innerHTML = l.img
+    ? `<img src="${l.img}" alt="preview" style="max-height:120px;">`
+    : '<div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>';
+  document.getElementById('form-title').textContent = '✏ EDITAR LAPTOP';
+  document.getElementById('btn-cancelar').style.display = 'block';
+  document.querySelector('.admin-form-card').scrollIntoView({behavior:'smooth'});
+}
+
+function eliminarLaptop(id){
+  if(!confirm('¿Eliminar esta laptop del catálogo?')) return;
+  const laptops = getLaptops().filter(l => l.id !== id);
+  saveLaptops(laptops);
+  renderAdminList();
+  renderCatalogo();
+  showToast('🗑 Laptop eliminada');
+}
+
+function resetForm(){
+  ['edit-id','f-brand','f-name','f-price','f-img','f-s1','f-s2','f-s3','f-s4','f-s5','f-s6'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('f-cat').value   = 'gaming';
+  document.getElementById('f-nuevo').value = 'no';
+  document.getElementById('img-preview-area').innerHTML = '<div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>';
+  document.getElementById('form-title').textContent = '➕ AGREGAR LAPTOP';
+  document.getElementById('btn-cancelar').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+
+// ══════════════════════════════════════
+//  CARGA DE IMAGEN
+// ══════════════════════════════════════
+function cargarImagen(input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('f-img').value = e.target.result;
+    document.getElementById('img-preview-area').innerHTML = `<img src="${e.target.result}" alt="preview" style="max-height:130px;">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ══════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2800);
+}
+
+// ══════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════
+renderCatalogo();
+actualizarWspLinks();
+</script>
+</body>
+</html>
