@@ -6,24 +6,12 @@
 <title>JersonTIC – Catálogo de Laptops</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --azul:       #0a1628;
-  --azul-medio: #0d2040;
-  --cyan:       #00c8f0;
-  --cyan2:      #0098d4;
-  --naranja:    #ff6a00;
-  --blanco:     #e8f4ff;
-  --gris:       #7a99bb;
-  --card-bg:    #0d2040;
-  --card-border:#1a3560;
-  --success:    #25d366;
-  --danger:     #e53535;
-}
+:root{--azul:#0a1628;--azul-medio:#0d2040;--cyan:#00c8f0;--cyan2:#0098d4;--naranja:#ff6a00;--blanco:#e8f4ff;--gris:#7a99bb;--card-bg:#0d2040;--card-border:#1a3560;--success:#25d366;--danger:#e53535;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--azul);color:var(--blanco);font-family:'Exo 2',sans-serif;min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,240,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 
-/* ── HEADER ── */
+/* HEADER */
 header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradient(180deg,#050e1f,rgba(5,14,31,.95));border-bottom:1px solid var(--card-border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .logo-area{display:flex;align-items:center;gap:.9rem;}
 .logo-icon{width:48px;height:48px;}
@@ -36,26 +24,26 @@ header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradie
 .btn-admin-toggle{display:flex;align-items:center;gap:.4rem;background:rgba(255,106,0,.15);color:var(--naranja);border:1px solid var(--naranja);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border-radius:50px;padding:.55rem 1.2rem;cursor:pointer;transition:all .2s;}
 .btn-admin-toggle:hover{background:var(--naranja);color:#fff;}
 
-/* ── HERO ── */
+/* HERO */
 .hero{position:relative;z-index:5;text-align:center;padding:3.5rem 2rem 2.5rem;}
 .hero-badge{display:inline-block;background:rgba(0,200,240,.12);border:1px solid var(--cyan);color:var(--cyan);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:50px;margin-bottom:1.2rem;}
 .hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4.5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:.8rem;}
-.hero h1 .ac{color:var(--cyan);} .hero h1 .ao{color:var(--naranja);}
+.hero h1 .ac{color:var(--cyan);}.hero h1 .ao{color:var(--naranja);}
 .hero p{color:var(--gris);font-size:1rem;max-width:480px;margin:0 auto 2rem;line-height:1.7;}
 .stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
 .stat-num{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:700;color:var(--cyan);}
 .stat-label{font-size:.7rem;color:var(--gris);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
 
-/* ── FILTROS ── */
+/* FILTROS */
 .filters{position:relative;z-index:5;display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:0 2rem 2rem;}
 .filter-btn{font-family:'Exo 2',sans-serif;font-weight:600;font-size:.82rem;padding:.5rem 1.3rem;border-radius:50px;border:1px solid var(--card-border);background:var(--card-bg);color:var(--gris);cursor:pointer;transition:all .2s;}
 .filter-btn:hover{border-color:var(--cyan);color:var(--cyan);}
 .filter-btn.active{background:var(--cyan);color:var(--azul);border-color:var(--cyan);font-weight:700;}
 
-/* ── GRID ── */
+/* GRID */
 .catalog{position:relative;z-index:5;display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.4rem;padding:0 2rem 4rem;max-width:1300px;margin:0 auto;}
 
-/* ── CARD ── */
+/* CARD */
 .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s;display:flex;flex-direction:column;}
 .card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 14px 36px rgba(0,200,240,.14);}
 .card-img{background:linear-gradient(135deg,#071428,#0a1e3a);padding:1.8rem;display:flex;align-items:center;justify-content:center;min-height:170px;position:relative;}
@@ -79,7 +67,16 @@ header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradie
 .btn-consultar{background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.78rem;border:none;border-radius:50px;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.35rem;}
 .btn-consultar:hover{transform:scale(1.05);box-shadow:0 4px 18px rgba(0,200,240,.4);}
 
-/* ── ADMIN OVERLAY ── */
+/* LOADING */
+#loading-screen{position:fixed;inset:0;z-index:2000;background:var(--azul);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
+.loading-logo{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:#fff;}
+.loading-logo span{color:var(--cyan);}
+.loading-bar{width:200px;height:3px;background:#1a3560;border-radius:50px;overflow:hidden;}
+.loading-bar-inner{height:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan));border-radius:50px;animation:load 1.5s ease-in-out infinite;}
+@keyframes load{0%{width:0%}50%{width:80%}100%{width:100%}}
+.loading-txt{font-size:.8rem;color:var(--gris);letter-spacing:2px;}
+
+/* ADMIN OVERLAY */
 #admin-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,14,31,.97);overflow-y:auto;padding:2rem;}
 #admin-overlay.visible{display:block;}
 .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;}
@@ -89,40 +86,54 @@ header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradie
 .btn-close-admin:hover{background:var(--danger);color:#fff;}
 
 /* LOGIN */
-#login-box{max-width:380px;margin:6rem auto 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2.5rem;text-align:center;}
-#login-box h2{font-family:'Orbitron',sans-serif;color:var(--cyan);font-size:1.1rem;margin-bottom:.5rem;}
-#login-box p{color:var(--gris);font-size:.85rem;margin-bottom:1.5rem;}
-#login-box input{width:100%;background:rgba(0,200,240,.07);border:1px solid var(--card-border);border-radius:10px;padding:.8rem 1rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.95rem;outline:none;transition:border .2s;margin-bottom:1rem;}
-#login-box input:focus{border-color:var(--cyan);}
-#login-box button{width:100%;background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;border:none;border-radius:50px;padding:.75rem;cursor:pointer;transition:transform .2s;}
-#login-box button:hover{transform:scale(1.03);}
-.login-err{color:#ff6060;font-size:.8rem;margin-top:.5rem;display:none;}
+#login-box{max-width:400px;margin:5rem auto 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2.5rem;text-align:center;}
+#login-box h2{font-family:'Orbitron',sans-serif;color:var(--cyan);font-size:1.1rem;margin-bottom:.4rem;}
+#login-box p{color:var(--gris);font-size:.82rem;margin-bottom:1.5rem;line-height:1.6;}
+.login-field{width:100%;background:rgba(0,200,240,.07);border:1px solid var(--card-border);border-radius:10px;padding:.8rem 1rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.9rem;outline:none;transition:border .2s;margin-bottom:.8rem;}
+.login-field:focus{border-color:var(--cyan);}
+.login-field::placeholder{color:#3a5580;}
+.btn-login{width:100%;background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;border:none;border-radius:50px;padding:.75rem;cursor:pointer;transition:transform .2s;margin-top:.3rem;}
+.btn-login:hover{transform:scale(1.02);}
+.login-err{color:#ff6060;font-size:.8rem;margin-top:.6rem;display:none;}
+.login-hint{background:rgba(0,200,240,.07);border:1px solid rgba(0,200,240,.15);border-radius:10px;padding:.9rem 1rem;margin-bottom:1rem;text-align:left;}
+.login-hint p{font-size:.75rem;color:var(--gris);line-height:1.6;margin:0;}
+.login-hint strong{color:var(--cyan);}
 
 /* ADMIN PANEL */
 #admin-panel{display:none;max-width:1100px;margin:0 auto;}
 .admin-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:1.5rem;align-items:start;}
 @media(max-width:760px){.admin-grid{grid-template-columns:1fr;}}
 
+/* CFG */
+.cfg-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;}
+.cfg-card h3{font-family:'Orbitron',sans-serif;font-size:.85rem;color:var(--gris);margin-bottom:.9rem;letter-spacing:1px;}
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;align-items:end;}
+@media(max-width:600px){.cfg-grid{grid-template-columns:1fr;}}
+
 /* FORM */
 .admin-form-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;}
 .admin-form-card h3{font-family:'Orbitron',sans-serif;font-size:.95rem;color:var(--cyan);margin-bottom:1.2rem;letter-spacing:1px;}
 .form-group{margin-bottom:.85rem;}
 .form-group label{display:block;font-size:.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:.35rem;font-weight:600;}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(0,200,240,.06);border:1px solid var(--card-border);border-radius:10px;padding:.65rem .9rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;outline:none;transition:border .2s;}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);}
+.form-group input,.form-group select{width:100%;background:rgba(0,200,240,.06);border:1px solid var(--card-border);border-radius:10px;padding:.65rem .9rem;color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;outline:none;transition:border .2s;}
+.form-group input:focus,.form-group select:focus{border-color:var(--cyan);}
 .form-group select option{background:#0d2040;}
 .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
-.img-preview-area{border:2px dashed var(--card-border);border-radius:10px;min-height:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border .2s;overflow:hidden;position:relative;}
+@media(max-width:500px){.form-grid-2{grid-template-columns:1fr;}}
+.img-preview-area{border:2px dashed var(--card-border);border-radius:10px;min-height:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border .2s;overflow:hidden;}
 .img-preview-area:hover{border-color:var(--cyan);}
 .img-preview-area img{max-width:100%;max-height:130px;object-fit:contain;}
-.img-preview-area .img-hint{color:var(--gris);font-size:.8rem;text-align:center;padding:1rem;}
+.img-hint{color:var(--gris);font-size:.8rem;text-align:center;padding:1rem;}
 #file-input{display:none;}
 .btn-guardar{width:100%;background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.9rem;border:none;border-radius:50px;padding:.75rem;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:.5rem;}
 .btn-guardar:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,200,240,.4);}
+.btn-guardar:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .btn-cancelar{width:100%;background:transparent;color:var(--gris);font-family:'Exo 2',sans-serif;font-weight:600;font-size:.85rem;border:1px solid var(--card-border);border-radius:50px;padding:.65rem;cursor:pointer;margin-top:.5rem;transition:all .2s;}
 .btn-cancelar:hover{border-color:var(--danger);color:var(--danger);}
+.btn-cfg{background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:var(--azul);font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border:none;border-radius:50px;padding:.55rem 1.3rem;cursor:pointer;transition:transform .2s;white-space:nowrap;}
+.btn-cfg:hover{transform:scale(1.03);}
 
-/* LISTA ADMIN */
+/* ADMIN LIST */
 .admin-list-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;}
 .admin-list-card h3{font-family:'Orbitron',sans-serif;font-size:.95rem;color:var(--naranja);margin-bottom:1.2rem;letter-spacing:1px;display:flex;align-items:center;justify-content:space-between;}
 .count-badge{background:rgba(255,106,0,.2);color:var(--naranja);border:1px solid var(--naranja);font-size:.7rem;padding:.2rem .65rem;border-radius:50px;}
@@ -141,27 +152,42 @@ header{position:relative;z-index:10;padding:1.2rem 2rem;background:linear-gradie
 .btn-del:hover{background:var(--danger);color:#fff;}
 .empty-state{text-align:center;padding:2rem;color:var(--gris);font-size:.85rem;}
 
-/* TOAST */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1a3560;border:1px solid var(--cyan);color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 1.5rem;border-radius:50px;z-index:9999;transition:transform .3s;pointer-events:none;}
-.toast.show{transform:translateX(-50%) translateY(0);}
+/* SYNC STATUS */
+.sync-bar{display:flex;align-items:center;gap:.6rem;background:rgba(0,200,240,.07);border:1px solid rgba(0,200,240,.15);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.78rem;color:var(--gris);}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--gris);flex-shrink:0;}
+.sync-dot.ok{background:var(--success);}
+.sync-dot.syncing{background:var(--cyan);animation:pulse 1s infinite;}
+.sync-dot.error{background:var(--danger);}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* FLOTANTE WSP */
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1a3560;border:1px solid var(--cyan);color:var(--blanco);font-family:'Exo 2',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 1.5rem;border-radius:50px;z-index:9999;transition:transform .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.error{border-color:var(--danger);background:#2a1020;}
+
+/* WSP FLOTANTE */
 .wsp-float{position:fixed;bottom:2rem;right:2rem;z-index:500;background:var(--success);color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.5);transition:transform .2s;}
 .wsp-float:hover{transform:scale(1.1);}
 
-/* FOOTER */
 footer{position:relative;z-index:5;text-align:center;padding:1.8rem;border-top:1px solid var(--card-border);color:var(--gris);font-size:.78rem;}
 footer span{color:var(--cyan);font-weight:600;}
 .card.hidden{display:none;}
-@media(max-width:600px){header{flex-direction:column;text-align:center;}.catalog{grid-template-columns:1fr;padding:0 1rem 3rem;}.form-grid-2{grid-template-columns:1fr;}}
+@media(max-width:600px){header{flex-direction:column;text-align:center;}.catalog{grid-template-columns:1fr;padding:0 1rem 3rem;}}
 </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
+<!-- LOADING -->
+<div id="loading-screen">
+  <div class="loading-logo">Jerson<span>TIC</span></div>
+  <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+  <div class="loading-txt">Cargando catálogo...</div>
+</div>
+
+<!-- HEADER -->
 <header>
   <div class="logo-area">
-    <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="logo-icon" viewBox="0 0 52 52" fill="none">
       <polygon points="26,2 50,15 50,37 26,50 2,37 2,15" fill="#0d2040" stroke="#00c8f0" stroke-width="1.5"/>
       <circle cx="26" cy="26" r="10" fill="none" stroke="#00c8f0" stroke-width="1"/>
       <path d="M20 26 Q26 18 32 26 Q26 34 20 26Z" fill="#ff6a00" opacity="0.9"/>
@@ -181,19 +207,19 @@ footer span{color:var(--cyan);font-weight:600;}
   </div>
 </header>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-badge">✦ Catálogo Oficial 2026 ✦</div>
   <h1>Tu próxima <span class="ac">laptop</span><br>está <span class="ao">aquí</span></h1>
   <p>Gaming, trabajo y estudio. Asesoría personalizada, envíos a todo el Perú.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Modelos</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Modelos</div></div>
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Garantía</div></div>
-    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Respuesta</div></div>
+    <div class="stat"><div class="stat-num">24H</div><div class="stat-label">Respuesta</div></div>
   </div>
 </section>
 
-<!-- ══ FILTROS ══ -->
+<!-- FILTROS -->
 <div class="filters">
   <button class="filter-btn active" onclick="filtrar('todos',this)">Todas</button>
   <button class="filter-btn" onclick="filtrar('gaming',this)">🎮 Gaming</button>
@@ -201,48 +227,52 @@ footer span{color:var(--cyan);font-weight:600;}
   <button class="filter-btn" onclick="filtrar('estudio',this)">📚 Estudio</button>
 </div>
 
-<!-- ══ CATÁLOGO ══ -->
+<!-- CATÁLOGO -->
 <div class="catalog" id="catalogo"></div>
 
-<!-- ══ FOOTER ══ -->
 <footer>© 2026 <span>JersonTIC</span> · Tecnología para todos · Lima, Perú</footer>
 
-<!-- ══ WSP FLOTANTE ══ -->
+<!-- WSP FLOTANTE -->
 <a class="wsp-float" id="wsp-float" href="#" target="_blank" title="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.856L.06 23.94l6.27-1.646A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.378l-.36-.214-3.724.977.995-3.632-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
 </a>
 
-<!-- ══ TOAST ══ -->
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════════════════
-     PANEL DE ADMINISTRACIÓN
-══════════════════════════════════════ -->
+<!-- ══ PANEL ADMIN ══ -->
 <div id="admin-overlay">
 
   <!-- LOGIN -->
   <div id="login-box">
     <svg width="48" height="48" viewBox="0 0 52 52" fill="none" style="margin-bottom:.8rem"><polygon points="26,2 50,15 50,37 26,50 2,37 2,15" fill="#0d2040" stroke="#00c8f0" stroke-width="1.5"/><circle cx="26" cy="26" r="10" fill="none" stroke="#00c8f0" stroke-width="1"/><path d="M20 26 Q26 18 32 26 Q26 34 20 26Z" fill="#ff6a00" opacity="0.9"/><circle cx="26" cy="26" r="3" fill="#00c8f0"/></svg>
     <h2>Panel Administrador</h2>
-    <p>Ingresa la contraseña para continuar</p>
-    <input type="password" id="pwd-input" placeholder="Contraseña..." onkeydown="if(event.key==='Enter')verificarPwd()">
-    <button onclick="verificarPwd()">Ingresar →</button>
+    <p>Ingresa tu contraseña para acceder al panel de gestión del catálogo.</p>
+    <input class="login-field" type="password" id="pwd-input" placeholder="Contraseña..." onkeydown="if(event.key==='Enter')verificarPwd()">
+    <div class="login-hint">
+      <p>🔑 La primera vez también necesitarás ingresar tu <strong>Token de GitHub</strong> dentro del panel para que los cambios se guarden en la nube.</p>
+    </div>
+    <button class="btn-login" onclick="verificarPwd()">Ingresar al panel →</button>
     <div class="login-err" id="login-err">Contraseña incorrecta</div>
-    <p style="margin-top:1rem;font-size:.72rem;color:#4a6080;">Contraseña por defecto: <strong style="color:var(--cyan)">jersontic2025</strong></p>
-    <button onclick="cerrarAdmin()" style="background:transparent;color:var(--gris);border:none;cursor:pointer;font-size:.8rem;margin-top:.8rem;font-family:'Exo 2',sans-serif;">✕ Cancelar</button>
+    <button onclick="cerrarAdmin()" style="background:transparent;color:var(--gris);border:none;cursor:pointer;font-size:.8rem;margin-top:1rem;font-family:'Exo 2',sans-serif;">✕ Cancelar</button>
   </div>
 
   <!-- PANEL -->
   <div id="admin-panel">
     <div class="admin-header">
       <div class="admin-title">Panel <span>Admin</span> — JersonTIC</div>
-      <button class="btn-close-admin" onclick="cerrarAdmin()">✕ Cerrar panel</button>
+      <button class="btn-close-admin" onclick="cerrarAdmin()">✕ Cerrar</button>
     </div>
 
-    <!-- CONFIGURACIÓN RÁPIDA -->
-    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
-      <h3 style="font-family:'Orbitron',sans-serif;font-size:.88rem;color:var(--gris);margin-bottom:.9rem;letter-spacing:1px;">⚙ CONFIGURACIÓN GENERAL</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;align-items:end;">
+    <!-- SYNC STATUS -->
+    <div class="sync-bar">
+      <div class="sync-dot" id="sync-dot"></div>
+      <span id="sync-txt">Verificando conexión con GitHub...</span>
+    </div>
+
+    <!-- CONFIGURACIÓN -->
+    <div class="cfg-card">
+      <h3>⚙ CONFIGURACIÓN GENERAL</h3>
+      <div class="cfg-grid">
         <div class="form-group" style="margin:0">
           <label>Tu número de WhatsApp</label>
           <input type="text" id="cfg-wsp" placeholder="Ej: 51987654321">
@@ -251,8 +281,12 @@ footer span{color:var(--cyan);font-weight:600;}
           <label>Contraseña del panel</label>
           <input type="password" id="cfg-pwd" placeholder="Nueva contraseña">
         </div>
+        <div class="form-group" style="margin:0;grid-column:1/-1">
+          <label>Token de GitHub 🔑 <span style="color:#4a6080;font-size:.65rem;">(se guarda solo en tu navegador)</span></label>
+          <input type="password" id="cfg-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        </div>
       </div>
-      <button onclick="guardarConfig()" style="margin-top:.9rem;background:linear-gradient(135deg,#0098d4,#00c8f0);color:#0a1628;font-family:'Exo 2',sans-serif;font-weight:700;font-size:.82rem;border:none;border-radius:50px;padding:.55rem 1.4rem;cursor:pointer;transition:transform .2s;">💾 Guardar configuración</button>
+      <button class="btn-cfg" onclick="guardarConfig()" style="margin-top:.9rem;">💾 Guardar configuración</button>
     </div>
 
     <div class="admin-grid">
@@ -260,58 +294,35 @@ footer span{color:var(--cyan);font-weight:600;}
       <div class="admin-form-card">
         <h3 id="form-title">➕ AGREGAR LAPTOP</h3>
         <input type="hidden" id="edit-id">
-
-        <div class="form-group">
-          <label>Marca</label>
-          <input type="text" id="f-brand" placeholder="Ej: ASUS, HP, Lenovo...">
-        </div>
-        <div class="form-group">
-          <label>Nombre del modelo</label>
-          <input type="text" id="f-name" placeholder="Ej: ASUS ROG Strix G15 Gaming">
-        </div>
+        <div class="form-group"><label>Marca</label><input type="text" id="f-brand" placeholder="Ej: ASUS, HP, Lenovo..."></div>
+        <div class="form-group"><label>Nombre del modelo</label><input type="text" id="f-name" placeholder="Ej: ASUS ROG Strix G15 Gaming"></div>
         <div class="form-grid-2">
-          <div class="form-group">
-            <label>Categoría</label>
-            <select id="f-cat">
-              <option value="gaming">🎮 Gaming</option>
-              <option value="trabajo">💼 Trabajo</option>
-              <option value="estudio">📚 Estudio</option>
-            </select>
+          <div class="form-group"><label>Categoría</label>
+            <select id="f-cat"><option value="gaming">🎮 Gaming</option><option value="trabajo">💼 Trabajo</option><option value="estudio">📚 Estudio</option></select>
           </div>
-          <div class="form-group">
-            <label>Precio (S/)</label>
-            <input type="number" id="f-price" placeholder="Ej: 2499">
-          </div>
+          <div class="form-group"><label>Precio (S/)</label><input type="number" id="f-price" placeholder="Ej: 2499"></div>
         </div>
-
-        <div style="font-size:.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:.5rem;">Especificaciones técnicas</div>
+        <div style="font-size:.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:.5rem;">Especificaciones</div>
         <div class="form-grid-2">
           <div class="form-group"><label>Procesador</label><input type="text" id="f-s1" placeholder="Intel i7-13th Gen"></div>
           <div class="form-group"><label>RAM</label><input type="text" id="f-s2" placeholder="16 GB DDR4"></div>
           <div class="form-group"><label>Tarjeta gráfica</label><input type="text" id="f-s3" placeholder="RTX 4060 8GB"></div>
           <div class="form-group"><label>Almacenamiento</label><input type="text" id="f-s4" placeholder="512 GB NVMe SSD"></div>
           <div class="form-group"><label>Pantalla</label><input type="text" id="f-s5" placeholder='15.6" FHD 144Hz'></div>
-          <div class="form-group"><label>Dato extra</label><input type="text" id="f-s6" placeholder="Windows 11, Batería 8h..."></div>
+          <div class="form-group"><label>Dato extra</label><input type="text" id="f-s6" placeholder="Windows 11, Batería..."></div>
         </div>
-
         <div class="form-group">
           <label>Foto de la laptop</label>
           <div class="img-preview-area" onclick="document.getElementById('file-input').click()" id="img-preview-area">
-            <div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>
+            <div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG — máx 500KB recomendado</small></div>
           </div>
           <input type="file" id="file-input" accept="image/*" onchange="cargarImagen(this)">
         </div>
         <input type="hidden" id="f-img">
-
-        <div class="form-group">
-          <label>¿Marcar como NUEVO?</label>
-          <select id="f-nuevo">
-            <option value="no">No</option>
-            <option value="si">Sí — mostrar badge NUEVO</option>
-          </select>
+        <div class="form-group"><label>¿Marcar como NUEVO?</label>
+          <select id="f-nuevo"><option value="no">No</option><option value="si">Sí — mostrar badge NUEVO</option></select>
         </div>
-
-        <button class="btn-guardar" onclick="guardarLaptop()">💾 Guardar laptop</button>
+        <button class="btn-guardar" id="btn-guardar" onclick="guardarLaptop()">💾 Guardar laptop</button>
         <button class="btn-cancelar" id="btn-cancelar" onclick="resetForm()" style="display:none;">✕ Cancelar edición</button>
       </div>
 
@@ -326,80 +337,121 @@ footer span{color:var(--cyan);font-weight:600;}
 
 <script>
 // ══════════════════════════════════════
-//  DATOS Y CONFIGURACIÓN
+//  CONFIGURACIÓN GITHUB
 // ══════════════════════════════════════
+const GH_USER  = 'Jerson211515';
+const GH_REPO  = 'Catalogo-JersonTic';
+const GH_FILE  = 'data/laptops.json';
+const GH_API   = `https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`;
 const DEFAULT_WSP = '51999999999';
-const DEFAULT_PWD = 'jersontic2025';
+const DEFAULT_PWD = 'jersontic2026';
 
-const LAPTOPS_DEFAULT = [
-  {id:1,brand:'ASUS ROG',name:'ASUS ROG Strix G15 – RTX 4060 Gaming Beast',cat:'gaming',price:3499,nuevo:'si',img:'',s1:'Ryzen 9 7945HX',s2:'16 GB DDR5',s3:'RTX 4060 8GB',s4:'512 GB NVMe',s5:'15.6" 144Hz FHD',s6:'Windows 11'},
-  {id:2,brand:'LENOVO',name:'Lenovo ThinkPad E16 – Productividad Profesional',cat:'trabajo',price:2299,nuevo:'no',img:'',s1:'Intel i7-13th Gen',s2:'16 GB DDR4',s3:'Intel Iris Xe',s4:'512 GB SSD',s5:'16" IPS FHD',s6:'~10 horas batería'},
-  {id:3,brand:'HP',name:'HP 250 G9 – Ideal para Universitarios',cat:'estudio',price:1399,nuevo:'no',img:'',s1:'Intel i5-12th Gen',s2:'8 GB DDR4',s3:'Intel UHD',s4:'256 GB SSD',s5:'15.6" FHD',s6:'1.74 kg'},
-  {id:4,brand:'MSI',name:'MSI Thin 15 – Gaming Ligero y Potente',cat:'gaming',price:2799,nuevo:'no',img:'',s1:'Intel i7-12650H',s2:'16 GB DDR4',s3:'RTX 4050 6GB',s4:'512 GB NVMe',s5:'15.6" 144Hz',s6:'1.86 kg'},
-  {id:5,brand:'DELL',name:'Dell Latitude 5540 – Empresarial Premium',cat:'trabajo',price:2599,nuevo:'si',img:'',s1:'Intel i7-1365U',s2:'16 GB DDR4',s3:'Intel Iris Xe',s4:'512 GB SSD',s5:'15.6" FHD IPS',s6:'TPM + Huella'},
-  {id:6,brand:'ACER',name:'Acer Aspire 3 – Rendimiento al Mejor Precio',cat:'estudio',price:1199,nuevo:'no',img:'',s1:'AMD Ryzen 5 7520U',s2:'8 GB DDR5',s3:'AMD Radeon 610M',s4:'512 GB SSD',s5:'15.6" FHD',s6:'Mejor precio'},
-];
-
-function getLaptops(){
-  const d = localStorage.getItem('jt_laptops');
-  return d ? JSON.parse(d) : LAPTOPS_DEFAULT;
-}
-function saveLaptops(arr){ localStorage.setItem('jt_laptops', JSON.stringify(arr)); }
+// ══════════════════════════════════════
+//  LOCAL CONFIG (localStorage)
+// ══════════════════════════════════════
 function getCfg(){
-  const d = localStorage.getItem('jt_cfg');
-  return d ? JSON.parse(d) : {wsp: DEFAULT_WSP, pwd: DEFAULT_PWD};
+  const d = localStorage.getItem('jt_cfg2');
+  return d ? JSON.parse(d) : {wsp: DEFAULT_WSP, pwd: DEFAULT_PWD, token: ''};
 }
-function saveCfg(c){ localStorage.setItem('jt_cfg', JSON.stringify(c)); }
+function saveCfgLocal(c){ localStorage.setItem('jt_cfg2', JSON.stringify(c)); }
+
+// ══════════════════════════════════════
+//  GITHUB API
+// ══════════════════════════════════════
+let ghSha = null; // SHA del archivo actual en GitHub
+
+async function ghLeer(){
+  try {
+    const r = await fetch(GH_API, {headers:{'Accept':'application/vnd.github.v3+json'}});
+    if(r.status === 404) return []; // archivo aún no existe
+    if(!r.ok) throw new Error('Error leyendo GitHub');
+    const d = await r.json();
+    ghSha = d.sha;
+    const json = atob(d.content.replace(/\n/g,''));
+    return JSON.parse(json);
+  } catch(e){
+    console.error(e);
+    return null;
+  }
+}
+
+async function ghGuardar(laptops){
+  const cfg = getCfg();
+  if(!cfg.token){ showToast('⚠ Ingresa tu Token de GitHub en Configuración','err'); return false; }
+  try {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(laptops, null, 2))));
+    const body = { message: 'Actualizar catálogo', content, ...(ghSha ? {sha: ghSha} : {}) };
+    const r = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {'Authorization':`token ${cfg.token}`,'Content-Type':'application/json'},
+      body: JSON.stringify(body)
+    });
+    if(!r.ok){
+      const err = await r.json();
+      throw new Error(err.message || 'Error guardando');
+    }
+    const d = await r.json();
+    ghSha = d.content.sha;
+    return true;
+  } catch(e){
+    console.error(e);
+    showToast('❌ Error: ' + e.message, 'err');
+    return false;
+  }
+}
+
+// ══════════════════════════════════════
+//  ESTADO
+// ══════════════════════════════════════
+let laptops = [];
+let filtroActivo = 'todos';
+
+function setSyncStatus(estado, txt){
+  const dot = document.getElementById('sync-dot');
+  const label = document.getElementById('sync-txt');
+  dot.className = 'sync-dot ' + estado;
+  label.textContent = txt;
+}
 
 // ══════════════════════════════════════
 //  CATÁLOGO PÚBLICO
 // ══════════════════════════════════════
-let filtroActivo = 'todos';
-
 function renderCatalogo(){
-  const laptops = getLaptops();
   const cfg = getCfg();
   const wsp = cfg.wsp || DEFAULT_WSP;
-  const el = document.getElementById('catalogo');
+  const el  = document.getElementById('catalogo');
   document.getElementById('stat-total').textContent = laptops.length;
-  const wspLink = n => `https://wa.me/${wsp}?text=Hola%2C%20me%20interesa%20la%20${encodeURIComponent(n)}`;
+  const wspLink = n => `https://wa.me/${wsp}?text=${encodeURIComponent('Hola, me interesa la ' + n)}`;
 
   if(!laptops.length){
-    el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--gris);">📭 No hay laptops en el catálogo.<br>Agrega desde el panel admin.</div>';
+    el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--gris);">📭 El catálogo está vacío.<br>Agrega laptops desde el Panel Admin.</div>';
     return;
   }
 
   el.innerHTML = laptops.map(l => {
-    const hidden = filtroActivo !== 'todos' && l.cat !== filtroActivo ? ' hidden' : '';
-    const imgHtml = l.img
-      ? `<img src="${l.img}" alt="${l.name}">`
-      : `<div class="card-img-placeholder">💻</div>`;
-    const badgeClass = l.cat === 'gaming' ? 'badge-gaming' : l.cat === 'trabajo' ? 'badge-trabajo' : 'badge-estudio';
-    const badgeLabel = l.cat === 'gaming' ? 'Gaming' : l.cat === 'trabajo' ? 'Trabajo' : 'Estudio';
-    const nuevoBadge = l.nuevo === 'si' ? '<span class="badge-nuevo">NUEVO</span>' : '';
+    const hidden   = filtroActivo !== 'todos' && l.cat !== filtroActivo ? ' hidden' : '';
+    const imgHtml  = l.img ? `<img src="${l.img}" alt="${l.name}">` : `<div class="card-img-placeholder">💻</div>`;
+    const bClass   = l.cat==='gaming'?'badge-gaming':l.cat==='trabajo'?'badge-trabajo':'badge-estudio';
+    const bLabel   = l.cat==='gaming'?'Gaming':l.cat==='trabajo'?'Trabajo':'Estudio';
+    const nuevoBdg = l.nuevo==='si'?'<span class="badge-nuevo">NUEVO</span>':'';
     return `
     <div class="card${hidden}" data-cat="${l.cat}">
       <div class="card-img">
-        <span class="badge-cat ${badgeClass}">${badgeLabel}</span>
-        ${nuevoBadge}
-        ${imgHtml}
+        <span class="badge-cat ${bClass}">${bLabel}</span>${nuevoBdg}${imgHtml}
       </div>
       <div class="card-body">
         <div class="card-brand">${l.brand}</div>
         <div class="card-title">${l.name}</div>
         <div class="specs">
-          ${l.s1 ? `<div class="spec-item"><span class="spec-key">Procesador</span><span class="spec-val">${l.s1}</span></div>` : ''}
-          ${l.s2 ? `<div class="spec-item"><span class="spec-key">RAM</span><span class="spec-val">${l.s2}</span></div>` : ''}
-          ${l.s3 ? `<div class="spec-item"><span class="spec-key">GPU</span><span class="spec-val">${l.s3}</span></div>` : ''}
-          ${l.s4 ? `<div class="spec-item"><span class="spec-key">Almacenamiento</span><span class="spec-val">${l.s4}</span></div>` : ''}
-          ${l.s5 ? `<div class="spec-item"><span class="spec-key">Pantalla</span><span class="spec-val">${l.s5}</span></div>` : ''}
-          ${l.s6 ? `<div class="spec-item"><span class="spec-key">Extra</span><span class="spec-val">${l.s6}</span></div>` : ''}
+          ${l.s1?`<div class="spec-item"><span class="spec-key">Procesador</span><span class="spec-val">${l.s1}</span></div>`:''}
+          ${l.s2?`<div class="spec-item"><span class="spec-key">RAM</span><span class="spec-val">${l.s2}</span></div>`:''}
+          ${l.s3?`<div class="spec-item"><span class="spec-key">GPU</span><span class="spec-val">${l.s3}</span></div>`:''}
+          ${l.s4?`<div class="spec-item"><span class="spec-key">Almacenamiento</span><span class="spec-val">${l.s4}</span></div>`:''}
+          ${l.s5?`<div class="spec-item"><span class="spec-key">Pantalla</span><span class="spec-val">${l.s5}</span></div>`:''}
+          ${l.s6?`<div class="spec-item"><span class="spec-key">Extra</span><span class="spec-val">${l.s6}</span></div>`:''}
         </div>
         <div class="card-footer">
-          <div class="price">
-            <span class="price-label">Precio</span>
-            <span class="price-amount">S/ ${Number(l.price).toLocaleString()}</span>
-          </div>
+          <div class="price"><span class="price-label">Precio</span><span class="price-amount">S/ ${Number(l.price).toLocaleString()}</span></div>
           <a class="btn-consultar" href="${wspLink(l.name)}" target="_blank">Consultar →</a>
         </div>
       </div>
@@ -410,18 +462,16 @@ function renderCatalogo(){
 
 function filtrar(cat, btn){
   filtroActivo = cat;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('#catalogo .card').forEach(c => {
-    c.classList.toggle('hidden', cat !== 'todos' && c.dataset.cat !== cat);
+  document.querySelectorAll('#catalogo .card').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='todos' && c.dataset.cat!==cat);
   });
 }
 
 function actualizarWspLinks(){
-  const cfg = getCfg();
-  const wsp = cfg.wsp || DEFAULT_WSP;
-  const msg = encodeURIComponent('Hola, vi el catálogo y quiero más info');
-  const url = `https://wa.me/${wsp}?text=${msg}`;
+  const wsp = getCfg().wsp || DEFAULT_WSP;
+  const url = `https://wa.me/${wsp}?text=${encodeURIComponent('Hola, vi el catálogo y quiero más info')}`;
   document.getElementById('wsp-float').href = url;
   document.getElementById('btn-wsp-header').href = url;
 }
@@ -433,9 +483,9 @@ function abrirAdmin(){
   document.getElementById('admin-overlay').classList.add('visible');
   document.getElementById('login-box').style.display = 'block';
   document.getElementById('admin-panel').style.display = 'none';
-  document.getElementById('pwd-input').value = '';
   document.getElementById('login-err').style.display = 'none';
-  setTimeout(()=>document.getElementById('pwd-input').focus(), 100);
+  document.getElementById('pwd-input').value = '';
+  setTimeout(()=>document.getElementById('pwd-input').focus(),100);
 }
 
 function verificarPwd(){
@@ -446,6 +496,7 @@ function verificarPwd(){
     document.getElementById('admin-panel').style.display = 'block';
     cargarConfigForm();
     renderAdminList();
+    verificarToken();
   } else {
     document.getElementById('login-err').style.display = 'block';
   }
@@ -457,39 +508,57 @@ function cerrarAdmin(){
 }
 
 // ══════════════════════════════════════
-//  ADMIN – CONFIGURACIÓN
+//  ADMIN – CONFIG
 // ══════════════════════════════════════
 function cargarConfigForm(){
   const cfg = getCfg();
-  document.getElementById('cfg-wsp').value = cfg.wsp || '';
-  document.getElementById('cfg-pwd').value = cfg.pwd || '';
+  document.getElementById('cfg-wsp').value   = cfg.wsp   || '';
+  document.getElementById('cfg-pwd').value   = cfg.pwd   || '';
+  document.getElementById('cfg-token').value = cfg.token || '';
 }
 
 function guardarConfig(){
-  const wsp = document.getElementById('cfg-wsp').value.trim();
-  const pwd = document.getElementById('cfg-pwd').value.trim();
-  saveCfg({wsp: wsp || DEFAULT_WSP, pwd: pwd || DEFAULT_PWD});
+  const wsp   = document.getElementById('cfg-wsp').value.trim();
+  const pwd   = document.getElementById('cfg-pwd').value.trim();
+  const token = document.getElementById('cfg-token').value.trim();
+  saveCfgLocal({wsp: wsp||DEFAULT_WSP, pwd: pwd||DEFAULT_PWD, token});
   actualizarWspLinks();
   renderCatalogo();
-  showToast('✅ Número de WhatsApp guardado');
+  verificarToken();
+  showToast('✅ Configuración guardada');
+}
+
+async function verificarToken(){
+  const cfg = getCfg();
+  if(!cfg.token){
+    setSyncStatus('error','⚠ Token de GitHub no configurado — los cambios no se guardarán en la nube');
+    return;
+  }
+  setSyncStatus('syncing','Verificando token...');
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}`,{
+      headers:{'Authorization':`token ${cfg.token}`}
+    });
+    if(r.ok) setSyncStatus('ok','✅ Conectado a GitHub — los cambios se guardan en la nube');
+    else setSyncStatus('error','❌ Token inválido o sin permisos. Verifica el token.');
+  } catch(e){
+    setSyncStatus('error','❌ Sin conexión a GitHub');
+  }
 }
 
 // ══════════════════════════════════════
 //  ADMIN – LISTA
 // ══════════════════════════════════════
 function renderAdminList(){
-  const laptops = getLaptops();
   const el = document.getElementById('admin-list');
   document.getElementById('list-count').textContent = laptops.length;
   if(!laptops.length){
-    el.innerHTML = '<div class="empty-state">Aún no hay laptops. ¡Agrega la primera!</div>';
+    el.innerHTML='<div class="empty-state">Aún no hay laptops. ¡Agrega la primera!</div>';
     return;
   }
-  el.innerHTML = laptops.map(l => `
+  el.innerHTML = laptops.map(l=>`
     <div class="admin-item">
-      <div class="admin-item-img">
-        ${l.img ? `<img src="${l.img}" alt="${l.name}">` : '💻'}
-      </div>
+      <div class="admin-item-img">${l.img?`<img src="${l.img}" alt="${l.name}">`:'💻'}</div>
       <div class="admin-item-info">
         <div class="admin-item-name">${l.name}</div>
         <div class="admin-item-meta">${l.brand} · ${l.cat}</div>
@@ -505,15 +574,17 @@ function renderAdminList(){
 // ══════════════════════════════════════
 //  ADMIN – CRUD
 // ══════════════════════════════════════
-function guardarLaptop(){
+async function guardarLaptop(){
   const name  = document.getElementById('f-name').value.trim();
   const brand = document.getElementById('f-brand').value.trim();
   const price = document.getElementById('f-price').value.trim();
-  if(!name || !brand || !price){ showToast('⚠ Completa nombre, marca y precio'); return; }
+  if(!name||!brand||!price){ showToast('⚠ Completa nombre, marca y precio','err'); return; }
 
-  const laptops = getLaptops();
-  const editId  = document.getElementById('edit-id').value;
+  const btn = document.getElementById('btn-guardar');
+  btn.disabled = true;
+  btn.textContent = '⏳ Guardando en GitHub...';
 
+  const editId = document.getElementById('edit-id').value;
   const laptop = {
     id:    editId ? Number(editId) : Date.now(),
     brand, name,
@@ -529,75 +600,105 @@ function guardarLaptop(){
     s6: document.getElementById('f-s6').value.trim(),
   };
 
+  let nuevaLista;
   if(editId){
-    const idx = laptops.findIndex(l => l.id === Number(editId));
-    if(idx > -1) laptops[idx] = laptop;
-    showToast('✅ Laptop actualizada');
+    nuevaLista = laptops.map(l => l.id === Number(editId) ? laptop : l);
   } else {
-    laptops.push(laptop);
-    showToast('✅ Laptop agregada al catálogo');
+    nuevaLista = [...laptops, laptop];
   }
 
-  saveLaptops(laptops);
-  renderAdminList();
-  renderCatalogo();
-  resetForm();
+  setSyncStatus('syncing', 'Guardando en GitHub...');
+  const ok = await ghGuardar(nuevaLista);
+
+  if(ok){
+    laptops = nuevaLista;
+    renderAdminList();
+    renderCatalogo();
+    resetForm();
+    setSyncStatus('ok','✅ Guardado en GitHub correctamente');
+    showToast(editId ? '✅ Laptop actualizada' : '✅ Laptop agregada al catálogo');
+  } else {
+    setSyncStatus('error','❌ No se pudo guardar en GitHub');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '💾 Guardar laptop';
 }
 
 function editarLaptop(id){
-  const l = getLaptops().find(x => x.id === id);
+  const l = laptops.find(x=>x.id===id);
   if(!l) return;
-  document.getElementById('edit-id').value  = l.id;
-  document.getElementById('f-brand').value  = l.brand;
-  document.getElementById('f-name').value   = l.name;
-  document.getElementById('f-cat').value    = l.cat;
-  document.getElementById('f-price').value  = l.price;
-  document.getElementById('f-nuevo').value  = l.nuevo;
-  document.getElementById('f-s1').value     = l.s1||'';
-  document.getElementById('f-s2').value     = l.s2||'';
-  document.getElementById('f-s3').value     = l.s3||'';
-  document.getElementById('f-s4').value     = l.s4||'';
-  document.getElementById('f-s5').value     = l.s5||'';
-  document.getElementById('f-s6').value     = l.s6||'';
-  document.getElementById('f-img').value    = l.img||'';
+  document.getElementById('edit-id').value = l.id;
+  document.getElementById('f-brand').value = l.brand;
+  document.getElementById('f-name').value  = l.name;
+  document.getElementById('f-cat').value   = l.cat;
+  document.getElementById('f-price').value = l.price;
+  document.getElementById('f-nuevo').value = l.nuevo;
+  document.getElementById('f-s1').value    = l.s1||'';
+  document.getElementById('f-s2').value    = l.s2||'';
+  document.getElementById('f-s3').value    = l.s3||'';
+  document.getElementById('f-s4').value    = l.s4||'';
+  document.getElementById('f-s5').value    = l.s5||'';
+  document.getElementById('f-s6').value    = l.s6||'';
+  document.getElementById('f-img').value   = l.img||'';
   const pa = document.getElementById('img-preview-area');
   pa.innerHTML = l.img
     ? `<img src="${l.img}" alt="preview" style="max-height:120px;">`
-    : '<div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>';
+    : '<div class="img-hint">📷 Haz clic para subir foto</div>';
   document.getElementById('form-title').textContent = '✏ EDITAR LAPTOP';
   document.getElementById('btn-cancelar').style.display = 'block';
   document.querySelector('.admin-form-card').scrollIntoView({behavior:'smooth'});
 }
 
-function eliminarLaptop(id){
+async function eliminarLaptop(id){
   if(!confirm('¿Eliminar esta laptop del catálogo?')) return;
-  const laptops = getLaptops().filter(l => l.id !== id);
-  saveLaptops(laptops);
-  renderAdminList();
-  renderCatalogo();
-  showToast('🗑 Laptop eliminada');
+  const nuevaLista = laptops.filter(l=>l.id!==id);
+  setSyncStatus('syncing','Eliminando...');
+  const ok = await ghGuardar(nuevaLista);
+  if(ok){
+    laptops = nuevaLista;
+    renderAdminList();
+    renderCatalogo();
+    setSyncStatus('ok','✅ Laptop eliminada correctamente');
+    showToast('🗑 Laptop eliminada');
+  } else {
+    setSyncStatus('error','❌ Error al eliminar');
+  }
 }
 
 function resetForm(){
-  ['edit-id','f-brand','f-name','f-price','f-img','f-s1','f-s2','f-s3','f-s4','f-s5','f-s6'].forEach(id => document.getElementById(id).value='');
+  ['edit-id','f-brand','f-name','f-price','f-img','f-s1','f-s2','f-s3','f-s4','f-s5','f-s6'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('f-cat').value   = 'gaming';
   document.getElementById('f-nuevo').value = 'no';
-  document.getElementById('img-preview-area').innerHTML = '<div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG, WEBP</small></div>';
+  document.getElementById('img-preview-area').innerHTML = '<div class="img-hint">📷 Haz clic para subir foto<br><small style="color:#4a6080">JPG, PNG — máx 500KB recomendado</small></div>';
   document.getElementById('form-title').textContent = '➕ AGREGAR LAPTOP';
   document.getElementById('btn-cancelar').style.display = 'none';
   document.getElementById('file-input').value = '';
 }
 
 // ══════════════════════════════════════
-//  CARGA DE IMAGEN
+//  IMAGEN
 // ══════════════════════════════════════
 function cargarImagen(input){
   const file = input.files[0];
   if(!file) return;
+  // Comprimir si es muy grande
   const reader = new FileReader();
   reader.onload = e => {
-    document.getElementById('f-img').value = e.target.result;
-    document.getElementById('img-preview-area').innerHTML = `<img src="${e.target.result}" alt="preview" style="max-height:130px;">`;
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const max = 600;
+      let w = img.width, h = img.height;
+      if(w > max){ h = h*(max/w); w = max; }
+      if(h > max){ w = w*(max/h); h = max; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const data = canvas.toDataURL('image/jpeg', 0.75);
+      document.getElementById('f-img').value = data;
+      document.getElementById('img-preview-area').innerHTML = `<img src="${data}" style="max-height:130px;">`;
+    };
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -605,18 +706,33 @@ function cargarImagen(input){
 // ══════════════════════════════════════
 //  TOAST
 // ══════════════════════════════════════
-function showToast(msg){
+let toastTimer;
+function showToast(msg, tipo=''){
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2800);
+  t.className = 'toast' + (tipo==='err'?' error':'');
+  clearTimeout(toastTimer);
+  setTimeout(()=>t.classList.add('show'),10);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
 }
 
 // ══════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════
-renderCatalogo();
-actualizarWspLinks();
+async function init(){
+  const data = await ghLeer();
+  document.getElementById('loading-screen').style.display = 'none';
+  if(data === null){
+    showToast('⚠ No se pudo cargar el catálogo','err');
+    laptops = [];
+  } else {
+    laptops = data;
+  }
+  renderCatalogo();
+  actualizarWspLinks();
+}
+
+init();
 </script>
 </body>
 </html>
